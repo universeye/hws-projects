@@ -15,8 +15,8 @@ class ViewController: UIViewController {
     private let label4 = UILabel()
     private let label5 = UILabel()
     
+    var previous: UILabel?
     
-
     override func viewDidLoad() {
         super.viewDidLoad()
         configureLabel1()
@@ -55,14 +55,29 @@ class ViewController: UIViewController {
         view.addSubview(label5)
         
         let viewsDictionary = ["label1": label1, "label2": label2, "label3": label3, "label4": label4, "label5": label5]
-        let metric = ["labelHeight": 88]
+        //        let metric = ["labelHeight": 88]
         //Auto Layout Visual Format Language(VFL)
         for label in viewsDictionary.keys {
             view.addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "H:|[\(label)]|", options: [], metrics: nil, views: viewsDictionary))
         }
         
-        view.addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "V:|-[label1(labelHeight@999)]-[label2(label1)]-[label3(label1)]-[label4(label1)]-[label5(label1)]-(>=10)-|", options: [], metrics: metric, views: viewsDictionary))
+        //        view.addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "V:|[label1(labelHeight@999)]-[label2(label1)]-[label3(label1)]-[label4(label1)]-[label5(label1)]-(>=10)-|", options: [], metrics: metric, views: viewsDictionary))
+        //
+        for label in [label1, label2, label3, label4, label5] {
+            label.widthAnchor.constraint(equalTo: view.widthAnchor).isActive = true
+            
+            label.heightAnchor.constraint(equalToConstant: 88).isActive = true
+            
+            if let previous = previous {
+                label.topAnchor.constraint(equalTo: previous.bottomAnchor, constant: 30).isActive = true
+            } else {
+                label.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 0 ).isActive = true
+            }
+            
+            //set the previous label to the current one, for the next loop iteration
+            previous = label
+        }
     }
-
+    
 }
 
