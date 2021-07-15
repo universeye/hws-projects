@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		BF4FCA7F269F3CEF009D4C93 /* Petition.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF4FCA7E269F3CEF009D4C93 /* Petition.swift */; };
+		BF4FCA8626A01763009D4C93 /* DetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF4FCA8526A01763009D4C93 /* DetailViewController.swift */; };
 		BFF6DB8F269C02A400960055 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFF6DB8E269C02A400960055 /* AppDelegate.swift */; };
 		BFF6DB91269C02A400960055 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFF6DB90269C02A400960055 /* SceneDelegate.swift */; };
 		BFF6DB93269C02A400960055 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFF6DB92269C02A400960055 /* ViewController.swift */; };
@@ -18,6 +19,7 @@
 
 /* Begin PBXFileReference section */
 		BF4FCA7E269F3CEF009D4C93 /* Petition.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Petition.swift; sourceTree = "<group>"; };
+		BF4FCA8526A01763009D4C93 /* DetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailViewController.swift; sourceTree = "<group>"; };
 		BFF6DB8B269C02A400960055 /* project7-json.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "project7-json.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		BFF6DB8E269C02A400960055 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		BFF6DB90269C02A400960055 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -61,6 +63,7 @@
 				BFF6DB8E269C02A400960055 /* AppDelegate.swift */,
 				BFF6DB90269C02A400960055 /* SceneDelegate.swift */,
 				BFF6DB92269C02A400960055 /* ViewController.swift */,
+				BF4FCA8526A01763009D4C93 /* DetailViewController.swift */,
 				BF4FCA7E269F3CEF009D4C93 /* Petition.swift */,
 				BFF6DB94269C02A400960055 /* Main.storyboard */,
 				BFF6DB97269C02A600960055 /* Assets.xcassets */,
@@ -142,6 +145,7 @@
 			files = (
 				BFF6DB93269C02A400960055 /* ViewController.swift in Sources */,
 				BF4FCA7F269F3CEF009D4C93 /* Petition.swift in Sources */,
+				BF4FCA8626A01763009D4C93 /* DetailViewController.swift in Sources */,
 				BFF6DB8F269C02A400960055 /* AppDelegate.swift in Sources */,
 				BFF6DB91269C02A400960055 /* SceneDelegate.swift in Sources */,
 			);
