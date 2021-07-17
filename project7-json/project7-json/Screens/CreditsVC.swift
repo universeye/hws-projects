@@ -35,6 +35,7 @@ class CreditsVC: UIViewController {
         button.translatesAutoresizingMaskIntoConstraints = false
         button.setTitle("Ok", for: .normal)
         button.setTitleColor(.link, for: .normal)
+        button.titleLabel?.font =  UIFont.systemFont(ofSize: 20, weight: .bold)
         return button
     }()
     

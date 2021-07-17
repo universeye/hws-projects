@@ -12,7 +12,8 @@ class DetailViewController: UIViewController {
     
     var webView: WKWebView!
     var detailItem: Petition?
-
+    
+    
     
     override func loadView() {
         webView = WKWebView()
