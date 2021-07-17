@@ -10,17 +10,37 @@ import UIKit
 class ViewController: UITableViewController {
     
     var petitions = [Petition]()
-
+    
+    lazy var creditButton = UIBarButtonItem(image: UIImage(systemName: "info.circle"), style: .plain, target: self, action: #selector(creditButtonTapped))
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        navigationItem.rightBarButtonItem = creditButton
         
-        let urlString = "https://www.hackingwithswift.com/samples/petitions-1.json"
+        let urlString: String
+        
+        if navigationController?.tabBarItem.tag == 0 {
+            urlString = "https://www.hackingwithswift.com/samples/petitions-1.json"
+        } else {
+            urlString = "https://www.hackingwithswift.com/samples/petitions-2.json"
+        }
+        
         
         if let url = URL(string: urlString) {
             if let data = try? Data(contentsOf: url) {
                 parse(json: data)
+                return
             }
         }
+        
+        showError()
+    }
+    
+    @objc private func creditButtonTapped() {
+        let creditsVC = CreditsVC()
+        creditsVC.modalPresentationStyle = .overFullScreen
+        creditsVC.modalTransitionStyle = .crossDissolve
+        present(creditsVC, animated: true, completion: nil)
     }
     
     private func parse(json: Data) {
@@ -31,7 +51,15 @@ class ViewController: UITableViewController {
             tableView.reloadData()
         }
     }
-
+    
+    private func showError() {
+        let ac = UIAlertController(title: "Loading Error", message: "There was a problem loading the feed; please check your connection and try again.", preferredStyle: .alert)
+        
+        ac.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
+        
+        present(ac, animated: true, completion: nil)
+    }
+    
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return petitions.count
     }
