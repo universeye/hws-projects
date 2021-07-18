@@ -9,22 +9,16 @@ import UIKit
 
 class ViewController: UITableViewController {
     
-    enum Section {
-        case main
-    }
-    
-    private var isSearching = false
-    private var dataSource:  UITableViewDiffableDataSource<Section, Petition>!
     
     var petitions = [Petition]()
     var filteredPetitions = [Petition]()
-    
+    var mySearchController: UISearchController?
+
     lazy var creditButton = UIBarButtonItem(image: UIImage(systemName: "info.circle"), style: .plain, target: self, action: #selector(creditButtonTapped))
     
     override func viewDidLoad() {
         super.viewDidLoad()
         navigationItem.rightBarButtonItem = creditButton
-        configureDataSource()
         
         let urlString: String
         
@@ -34,17 +28,19 @@ class ViewController: UITableViewController {
             urlString = "https://www.hackingwithswift.com/samples/petitions-2.json"
         }
         
-        
+        configureSearchController()
         if let url = URL(string: urlString) {
             if let data = try? Data(contentsOf: url) {
                 parse(json: data)
-                updateData(on: petitions)
                 return
+                
             }
         }
         
         showError()
     }
+    
+    
     
     @objc private func creditButtonTapped() {
         let creditsVC = CreditsVC()
@@ -52,6 +48,8 @@ class ViewController: UITableViewController {
         creditsVC.modalTransitionStyle = .crossDissolve
         present(creditsVC, animated: true, completion: nil)
     }
+    
+    
     
     private func parse(json: Data) {
         let decoder = JSONDecoder()
@@ -62,6 +60,8 @@ class ViewController: UITableViewController {
         }
     }
     
+    
+    
     private func showError() {
         let ac = UIAlertController(title: "Loading Error", message: "There was a problem loading the feed; please check your connection and try again.", preferredStyle: .alert)
         
@@ -70,47 +70,57 @@ class ViewController: UITableViewController {
         present(ac, animated: true, completion: nil)
     }
     
-    private func configureDataSource() {
-        dataSource = UITableViewDiffableDataSource<Section, Petition>(tableView: self.tableView, cellProvider: { tableView, indexPath, petition in
-            let cell = tableView.dequeueReusableCell(withIdentifier: "Cell", for: indexPath)
-            
-            cell.textLabel?.text = self.petitions[indexPath.row].title
-            cell.detailTextLabel?.text = self.petitions[indexPath.row].body
-            
-            return cell
-        })
-        
+    private func configureSearchController() {
+        mySearchController = UISearchController(searchResultsController: nil)
+        mySearchController?.searchResultsUpdater = self
+        self.navigationItem.searchController = mySearchController
+        mySearchController?.obscuresBackgroundDuringPresentation = false
     }
     
-    private func updateData(on petitions: [Petition]) {
-        var snapshot = NSDiffableDataSourceSnapshot<Section, Petition>()
-        snapshot.appendSections([.main])
-        snapshot.appendItems(petitions)
-        DispatchQueue.main.async {
-            self.dataSource.apply(snapshot, animatingDifferences: true)
+    
+    
+    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        //return petitions.count
+        
+        if (mySearchController?.isActive)! {
+            return filteredPetitions.count
+        } else {
+            return petitions.count
         }
     }
     
     
-    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return petitions.count
+    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCell(withIdentifier: "Cell", for: indexPath)
+
+        cell.textLabel?.text = (mySearchController?.isActive)! ? filteredPetitions[indexPath.row].title : petitions[indexPath.row].title
+        cell.detailTextLabel?.text = (mySearchController?.isActive)! ? filteredPetitions[indexPath.row].body : petitions[indexPath.row].body
+
+        return cell
     }
     
-//    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-//        let cell = tableView.dequeueReusableCell(withIdentifier: "Cell", for: indexPath)
-//
-//        cell.textLabel?.text = petitions[indexPath.row].title
-//        cell.detailTextLabel?.text = petitions[indexPath.row].body
-//
-//        return cell
-//    }
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
         let detailVC = DetailViewController()
-        detailVC.detailItem = petitions[indexPath.row]
+        detailVC.detailItem = (mySearchController?.isActive)! ? filteredPetitions[indexPath.row] : petitions[indexPath.row]
         
         navigationController?.pushViewController(detailVC, animated: true)
     }
+    
+    
 }
 
+
+// MARK: - Extension
+
+extension ViewController: UISearchResultsUpdating{
+    
+    func updateSearchResults(for searchController: UISearchController) {
+        if let searchText = searchController.searchBar.text {
+            self.filteredPetitions = petitions.filter { $0.title.lowercased().contains(searchText.lowercased()) }
+            tableView.reloadData()
+        }
+    }
+    
+}
