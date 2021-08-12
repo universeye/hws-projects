@@ -16,6 +16,7 @@
 		BF2D4CF926BA6A2900527E89 /* level1.txt in Resources */ = {isa = PBXBuildFile; fileRef = BF2D4CF826BA6A2900527E89 /* level1.txt */; };
 		BF2FEF9F26B2690E004160A5 /* p8Button.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF2FEF9E26B2690E004160A5 /* p8Button.swift */; };
 		BF90950E26BC142300448C3A /* level2.txt in Resources */ = {isa = PBXBuildFile; fileRef = BF90950D26BC142300448C3A /* level2.txt */; };
+		BFF07D5526C5864000FF8B67 /* p8Label.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFF07D5426C5864000FF8B67 /* p8Label.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -30,6 +31,7 @@
 		BF2D4CF826BA6A2900527E89 /* level1.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = level1.txt; sourceTree = "<group>"; };
 		BF2FEF9E26B2690E004160A5 /* p8Button.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = p8Button.swift; sourceTree = "<group>"; };
 		BF90950D26BC142300448C3A /* level2.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = level2.txt; sourceTree = "<group>"; };
+		BFF07D5426C5864000FF8B67 /* p8Label.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = p8Label.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -66,6 +68,7 @@
 				BF0414D626A87672004EE172 /* SceneDelegate.swift */,
 				BF0414D826A87672004EE172 /* ViewController.swift */,
 				BF2FEF9E26B2690E004160A5 /* p8Button.swift */,
+				BFF07D5426C5864000FF8B67 /* p8Label.swift */,
 				BF2D4CF826BA6A2900527E89 /* level1.txt */,
 				BF90950D26BC142300448C3A /* level2.txt */,
 				BF0414DA26A87672004EE172 /* Main.storyboard */,
@@ -148,6 +151,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				BFF07D5526C5864000FF8B67 /* p8Label.swift in Sources */,
 				BF0414D926A87672004EE172 /* ViewController.swift in Sources */,
 				BF2FEF9F26B2690E004160A5 /* p8Button.swift in Sources */,
 				BF0414D526A87672004EE172 /* AppDelegate.swift in Sources */,

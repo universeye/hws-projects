@@ -9,17 +9,25 @@ import UIKit
 
 class ViewController: UITableViewController {
     
-    
+    //MARK: - Properties
     var petitions = [Petition]()
     var filteredPetitions = [Petition]()
     var mySearchController: UISearchController?
 
     lazy var creditButton = UIBarButtonItem(image: UIImage(systemName: "info.circle"), style: .plain, target: self, action: #selector(creditButtonTapped))
     
+    //MARK: - App Lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
         navigationItem.rightBarButtonItem = creditButton
         
+        configureSearchController()
+        fetchJSON()
+    }
+    
+    
+    //MARK: - Functions
+    @objc func fetchJSON() {
         let urlString: String
         
         if navigationController?.tabBarItem.tag == 0 {
@@ -28,19 +36,15 @@ class ViewController: UITableViewController {
             urlString = "https://www.hackingwithswift.com/samples/petitions-2.json"
         }
         
-        configureSearchController()
         if let url = URL(string: urlString) {
             if let data = try? Data(contentsOf: url) {
-                parse(json: data)
+                self.parse(json: data)
                 return
                 
             }
         }
-        
-        showError()
+        performSelector(onMainThread: #selector(showError), with: nil, waitUntilDone: false)
     }
-    
-    
     
     @objc private func creditButtonTapped() {
         let creditsVC = CreditsVC()
@@ -56,18 +60,22 @@ class ViewController: UITableViewController {
         
         if let jsonPetitions = try? decoder.decode(Petitions.self, from: json) {
             petitions = jsonPetitions.results
-            tableView.reloadData()
+            tableView.performSelector(onMainThread: #selector(UITableView.reloadData), with: nil, waitUntilDone: false)
+            
         }
     }
     
     
     
-    private func showError() {
-        let ac = UIAlertController(title: "Loading Error", message: "There was a problem loading the feed; please check your connection and try again.", preferredStyle: .alert)
+    @objc private func showError() {
+        DispatchQueue.main.async {
+            let ac = UIAlertController(title: "Loading Error", message: "There was a problem loading the feed; please check your connection and try again.", preferredStyle: .alert)
+            
+            ac.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
+            
+            self.present(ac, animated: true, completion: nil)
+        }
         
-        ac.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
-        
-        present(ac, animated: true, completion: nil)
     }
     
     private func configureSearchController() {
@@ -78,7 +86,7 @@ class ViewController: UITableViewController {
     }
     
     
-    
+    //MARK: - Tableview
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         //return petitions.count
         
@@ -118,8 +126,13 @@ extension ViewController: UISearchResultsUpdating{
     
     func updateSearchResults(for searchController: UISearchController) {
         if let searchText = searchController.searchBar.text {
-            self.filteredPetitions = petitions.filter { $0.title.lowercased().contains(searchText.lowercased()) }
-            tableView.reloadData()
+            DispatchQueue.global(qos: .userInitiated).async {
+                self.filteredPetitions = self.petitions.filter { $0.title.lowercased().contains(searchText.lowercased()) }
+            }
+            DispatchQueue.main.async {
+                self.tableView.reloadData()
+            }
+            
         }
     }
     
