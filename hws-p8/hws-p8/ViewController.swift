@@ -80,7 +80,9 @@ class ViewController: UIViewController {
         super.viewDidLoad()
         
         scoreLabel.text = "Score: \(score)"
-        loadLevel()
+        DispatchQueue.global(qos: .background).async {
+            self.loadLevel()
+        }
     }
     
     //MARK: - Functions
@@ -183,17 +185,19 @@ class ViewController: UIViewController {
                 }
             }
         }
-        
-        cluesLabel.text = clueString.trimmingCharacters(in: .whitespacesAndNewlines)
-        answersLabel.text = solutionString.trimmingCharacters(in: .whitespacesAndNewlines)
-        
-        letterBits.shuffle()
-        
-        if letterBits.count == letterButtons.count {
-            for i in 0..<letterButtons.count {
-                letterButtons[i].setTitle(letterBits[i], for: .normal)
+        DispatchQueue.main.async {
+            self.cluesLabel.text = clueString.trimmingCharacters(in: .whitespacesAndNewlines)
+            self.answersLabel.text = solutionString.trimmingCharacters(in: .whitespacesAndNewlines)
+            
+            letterBits.shuffle()
+            
+            if letterBits.count == self.letterButtons.count {
+                for i in 0..<self.letterButtons.count {
+                    self.letterButtons[i].setTitle(letterBits[i], for: .normal)
+                }
             }
         }
+        
     }
     
     private func levelUp(action: UIAlertAction) {
