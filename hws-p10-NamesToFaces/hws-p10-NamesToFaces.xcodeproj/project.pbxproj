@@ -16,6 +16,7 @@
 		BF29C3F626CBEF6100CACF02 /* hws_p10_NamesToFacesTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF29C3F526CBEF6100CACF02 /* hws_p10_NamesToFacesTests.swift */; };
 		BF29C40126CBEF6100CACF02 /* hws_p10_NamesToFacesUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF29C40026CBEF6100CACF02 /* hws_p10_NamesToFacesUITests.swift */; };
 		BF29C40F26CC105200CACF02 /* PersonCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF29C40E26CC105200CACF02 /* PersonCell.swift */; };
+		BF57F70D26EB35BF00A93224 /* Person.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF57F70C26EB35BF00A93224 /* Person.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -51,6 +52,7 @@
 		BF29C40026CBEF6100CACF02 /* hws_p10_NamesToFacesUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = hws_p10_NamesToFacesUITests.swift; sourceTree = "<group>"; };
 		BF29C40226CBEF6100CACF02 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		BF29C40E26CC105200CACF02 /* PersonCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersonCell.swift; sourceTree = "<group>"; };
+		BF57F70C26EB35BF00A93224 /* Person.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Person.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -104,6 +106,7 @@
 				BF29C3DE26CBEF6000CACF02 /* AppDelegate.swift */,
 				BF29C3E026CBEF6000CACF02 /* SceneDelegate.swift */,
 				BF29C3E226CBEF6000CACF02 /* ViewController.swift */,
+				BF57F70C26EB35BF00A93224 /* Person.swift */,
 				BF29C3E426CBEF6000CACF02 /* Main.storyboard */,
 				BF29C40E26CC105200CACF02 /* PersonCell.swift */,
 				BF29C3E726CBEF6100CACF02 /* Assets.xcassets */,
@@ -261,6 +264,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				BF57F70D26EB35BF00A93224 /* Person.swift in Sources */,
 				BF29C3E326CBEF6000CACF02 /* ViewController.swift in Sources */,
 				BF29C3DF26CBEF6000CACF02 /* AppDelegate.swift in Sources */,
 				BF29C40F26CC105200CACF02 /* PersonCell.swift in Sources */,
