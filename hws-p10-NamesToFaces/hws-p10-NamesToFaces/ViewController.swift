@@ -18,6 +18,8 @@ class ViewController: UICollectionViewController, UIImagePickerControllerDelegat
         super.viewDidLoad()
         navigationItem.leftBarButtonItem = addButton
         navigationItem.rightBarButtonItem = cameraButton
+        
+        title = "Names to Faces"
     }
     
     //MARK: - CollectionView Delegate
@@ -48,6 +50,11 @@ class ViewController: UICollectionViewController, UIImagePickerControllerDelegat
         
         ac.addTextField()
         ac.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
+        ac.addAction(UIAlertAction(title: "Delete", style: .destructive, handler: { [weak self]_ in
+            guard let self = self else { return }
+            self.people.remove(at: indexPath.item)
+            self.collectionView.reloadData()
+        }))
         ac.addAction(UIAlertAction(title: "Save", style: .default, handler: { [weak self, weak ac] _ in
             guard let self = self else { return }
             guard let newName = ac?.textFields?[0].text else { return }
@@ -95,7 +102,15 @@ class ViewController: UICollectionViewController, UIImagePickerControllerDelegat
     }
     
     @objc private func cameraButtonTapped() {
-        
+        let picker = UIImagePickerController()
+        if UIImagePickerController.isSourceTypeAvailable(.camera) == false {
+            return
+        } else {
+            picker.sourceType = .camera
+            picker.allowsEditing =  true
+            picker.delegate = self
+            present(picker, animated: true, completion: nil)
+        }
     }
 
 }
