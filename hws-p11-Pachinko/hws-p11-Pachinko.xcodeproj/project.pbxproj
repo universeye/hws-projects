@@ -15,6 +15,7 @@
 		BF4C60D926EBBEE4004F9396 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = BF4C60D826EBBEE4004F9396 /* Assets.xcassets */; };
 		BF4C60E426EBBEE4004F9396 /* hws_p11_PachinkoTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF4C60E326EBBEE4004F9396 /* hws_p11_PachinkoTests.swift */; };
 		BF4C60EF26EBBEE4004F9396 /* hws_p11_PachinkoUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF4C60EE26EBBEE4004F9396 /* hws_p11_PachinkoUITests.swift */; };
+		BF4C60FD26EC659E004F9396 /* Content in Resources */ = {isa = PBXBuildFile; fileRef = BF4C60FC26EC659E004F9396 /* Content */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -49,6 +50,7 @@
 		BF4C60EA26EBBEE4004F9396 /* hws-p11-PachinkoUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "hws-p11-PachinkoUITests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		BF4C60EE26EBBEE4004F9396 /* hws_p11_PachinkoUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = hws_p11_PachinkoUITests.swift; sourceTree = "<group>"; };
 		BF4C60F026EBBEE4004F9396 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		BF4C60FC26EC659E004F9396 /* Content */ = {isa = PBXFileReference; lastKnownFileType = folder; path = Content; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -105,6 +107,7 @@
 				BF4C60D326EBBEE3004F9396 /* GameViewController.swift */,
 				BF4C60D526EBBEE3004F9396 /* Main.storyboard */,
 				BF4C60D826EBBEE4004F9396 /* Assets.xcassets */,
+				BF4C60FC26EC659E004F9396 /* Content */,
 				BF4C60DA26EBBEE4004F9396 /* Info.plist */,
 			);
 			path = "hws-p11-Pachinko";
@@ -233,6 +236,7 @@
 			files = (
 				BF4C60D726EBBEE3004F9396 /* Main.storyboard in Resources */,
 				BF4C60CE26EBBEE2004F9396 /* GameScene.sks in Resources */,
+				BF4C60FD26EC659E004F9396 /* Content in Resources */,
 				BF4C60D926EBBEE4004F9396 /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
